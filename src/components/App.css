@@ -1,0 +1,16 @@
+.card{
+    min-width: 275px;
+}
+
+.title {
+    margin-bottom: 16px;
+    font-size: 14pt;
+}
+
+.formControl {
+    min-width: 120px !important;
+}
+
+.icon{
+    cursor: pointer;
+}

@@ -1,0 +1,24 @@
+.comment-header{
+    display: flex;
+    justify-content: space-between;
+}
+.comment-vote{
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-body{
+    display: flex;
+}
+
+.comment-card-action{
+    display: flex;
+    justify-content: flex-end;
+}
+.comment-body-content{
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    padding-left: 10px;
+    border-left: 1px solid #ccc;
+}

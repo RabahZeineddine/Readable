@@ -1,0 +1,45 @@
+.post-cover{
+    margin-top: 20px;
+}
+
+.post-cover-card-action{
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.comments-count{
+    display: flex;
+    align-items: center;
+}
+
+.comments-count-details{
+    margin-left: 5px !important;
+}
+
+.comment-icon{
+    font-size: 18px;
+}
+
+.post-voting{
+    display: flex;
+    align-items: center;
+}
+
+.voting-number{
+    margin: 0 5px !important;
+}
+
+.thumbs-icon{
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.post-link{
+    text-decoration: none;
+    color: #000;
+}
