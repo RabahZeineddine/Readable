@@ -19,12 +19,15 @@ import './categories.css'
 class Categories extends Component {
 
     componentDidMount() {
-        this.props.fetchCategories()
+        // this.props.fetchCategories()
     }
 
     render() {
         const { categories } = this.props
         const selectedCategory = this.props.category
+
+        console.log(selectedCategory)
+
         return (
             <Grid item xs={12}>
                 <br />

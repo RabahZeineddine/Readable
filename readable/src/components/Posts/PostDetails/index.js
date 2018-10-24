@@ -10,6 +10,7 @@ import {
 } from '@material-ui/core'
 import PostCover from '../PostCover'
 import Comments from '../../Comments';
+import NotFound from '../../NotFound';
 
 class PostDetails extends Component {
 
@@ -25,18 +26,26 @@ class PostDetails extends Component {
     }
 
     render() {
-        return (
-            <Grid container spacing={8} justify="center">
-                <PostCover id={this.props.id} showDetails={true} onDelete={this.props.navigate} />
-                <Comments postId={this.props.id} />
-            </Grid>
-        )
+
+        if (!this.props.posts.fetchingPostError && Object.keys(this.props.posts).length > 0 && this.props.post && !this.props.posts.fetchingPost) {
+            return (
+                <Grid container spacing={8} justify="center">
+                    <PostCover id={this.props.id} showDetails={true} onDelete={this.props.navigate} />
+                    <Comments postId={this.props.id} />
+                </Grid>
+            )
+        } else {
+            return (
+                <NotFound />
+            )
+        }
     }
 }
 
 const mapStateToProps = ({ posts }, { id }) => {
     return {
-        post: posts.items[id]
+        posts,
+        post: posts.items[id] || null
     }
 }
 

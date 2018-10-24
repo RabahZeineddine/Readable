@@ -53,7 +53,7 @@ class PostCover extends Component {
                         <CardContent>
                             <div className="post-header">
                                 <Typography variant="headline" component="h2">
-                                    <Link to={`/posts/${post.id}`} className="post-link">
+                                    <Link to={`/${post.category}/${post.id}`} className="post-link">
                                         {post.title}
                                     </Link>
                                 </Typography>
@@ -66,13 +66,14 @@ class PostCover extends Component {
                             {showDetails ?
                                 <div>
                                     {post.body}
+                                    <br/><br/>
                                 </div>
-                                :
-                                <div className="comments-count">
-                                    <Icon className="comment-icon">comment</Icon>
-                                    <Typography className="comments-count-details">{(post.commentCount > 1) ? ` ${post.commentCount} Comments` : (post.commentCount == 1) ? ` 1 Comment` : ` No comments yet`}</Typography>
-                                </div>
-                            }
+                                : ''}
+                            <div className="comments-count">
+                                <Icon className="comment-icon">comment</Icon>
+                                <Typography className="comments-count-details">{(post.commentCount > 1) ? ` ${post.commentCount} Comments` : (post.commentCount == 1) ? ` 1 Comment` : ` No comments yet`}</Typography>
+                            </div>
+
                             <br />
                             <div className="post-voting">
                                 <Icon className="thumbs-icon" onClick={() => postUpVote(post.id)}>thumb_up</Icon>

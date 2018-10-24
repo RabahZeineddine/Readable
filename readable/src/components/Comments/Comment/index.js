@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Moment from 'react-moment'
-import CommentDeleteModal from './CommentDeleteModal'
+import CommentDeleteModal from '../CommentDeleteModal'
 import CommentModal from '../CommentModal'
 import { commentUpVote, commentDownVote } from '../../../actions/commentsActions'
 import { Card, CardContent, Typography, Icon, CardActions } from '@material-ui/core';

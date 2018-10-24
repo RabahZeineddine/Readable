@@ -223,6 +223,12 @@ export const fetchPostById = (post_id) => dispatch => {
     dispatch(fetchPostRequest())
     return PostsAPI
         .fetchPostById(post_id)
-        .then((post) => dispatch(fetchPostSuccess(post)))
+        .then((post) => {
+            if (!post.error) {
+                return dispatch(fetchPostSuccess(post))
+            } else {
+                return dispatch(fetchPostFailure(post))
+            }
+        })
         .catch(err => dispatch(fetchPostFailure(err)))
 }
