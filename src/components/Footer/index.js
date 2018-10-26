@@ -5,7 +5,7 @@ class Footer extends Component {
 
     render() {
         return (
-            <Card className="card" className="footer">
+            <Card className="card footer">
                 <CardContent>
                     Rabah Zeineddine, Readable: React And Redux section project
                 </CardContent>

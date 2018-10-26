@@ -31,7 +31,7 @@ const loginFailure = (error) => {
 }
 
 export const login = (user) => dispatch => {
-    dispatch(loginRequest)
+    dispatch(loginRequest())
     return UserAPI
         .login(user)
         .then(info => {

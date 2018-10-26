@@ -1,4 +1,5 @@
-const API = "http://localhost:4000"
+const API = "https://readable.mybluemix.net"
+// const API = "http://localhost:4000"
 
 const headers = {
     'Accept': 'application/json',
