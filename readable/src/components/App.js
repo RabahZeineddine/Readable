@@ -5,11 +5,14 @@ import Posts from './Posts'
 import Grid from '@material-ui/core/Grid'
 import NotFound from './NotFound'
 import './App.css'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import { withRouter } from 'react-router'
 import PostDetails from './Posts/PostDetails'
 import { connect } from 'react-redux'
 import { fetchCategories } from '../actions/categoriesActions'
+import Login from './Login';
+import Signup from './Signup';
+import Footer from './Footer'
 
 class App extends Component {
 
@@ -18,7 +21,7 @@ class App extends Component {
   }
 
   checkCategory = (category) => {
-    return category ? this.props.categories.items.filter(cat => cat.name.toLowerCase() == category.toLowerCase()).length > 0 : true
+    return category ? this.props.categories.items.filter(cat => cat.name.toLowerCase() === category.toLowerCase()).length > 0 : true
   }
 
   render() {
@@ -26,33 +29,40 @@ class App extends Component {
     const { categories } = this.props
 
     return (
-      <div>
-        <Header />
-        <Route exact path="/:category?/:id?" render={({ history, match }) => {
-          if (!categories.isFetching && categories.items.length > 0 && this.checkCategory(match.params.category)) {
-            if (!match.params.id) {
-              return (
-                <Grid container spacing={8}>
-                  <Categories category={match.params.category} />
-                  <Posts category={match.params.category} navigate={() => history.push('/')} />
-                </Grid>
-              )
-            } else {
-              return (
-                < Grid container spacing={8}>
-                  <PostDetails id={match.params.id} navigate={() => history.push('/')} />
-                </Grid>)
+      <div className="body">
+        <div>
+          <Header />
+          <Switch>
+            <Route exact path="/login" render={({ history }) => <Login onLogin={() => history.push('/')} />} />
+            <Route exact path="/signup" render={({ history }) => <Signup onSignup={() => history.push('/')} />} />
+            <Route exact path="/:category?/:id?" render={({ history, match }) => {
+              if (!categories.isFetching && categories.items.length > 0 && this.checkCategory(match.params.category)) {
+                if (!match.params.id) {
+                  return (
+                    <Grid container spacing={8}>
+                      <Categories category={match.params.category} />
+                      <Posts category={match.params.category} navigate={() => history.push('/')} />
+                    </Grid>
+                  )
+                } else {
+                  return (
+                    < Grid container spacing={8}>
+                      <PostDetails id={match.params.id} navigate={() => history.push('/')} />
+                    </Grid>)
+                }
+              }
+              else if (categories.isFetching) {
+                return (
+                  'Loading'
+                )
+              } else {
+                return (<NotFound />)
+              }
             }
-          }
-          else if (categories.isFetching) {
-            return (
-              'Loading'
-            )
-          } else {
-            return (<NotFound />)
-          }
-        }
-        } />
+            } />
+          </Switch>
+        </div>
+        <Footer />
       </div>
     );
   }

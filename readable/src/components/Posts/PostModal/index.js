@@ -63,7 +63,7 @@ class PostModal extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        if (this.state.category != 'default') {
+        if (this.state.category !== 'default') {
 
             if (this.state.editModal) {
                 let post = Object.assign({}, this.props.post, this.state.post)
@@ -73,6 +73,7 @@ class PostModal extends Component {
             } else {
                 let { post } = this.state
                 post.id = UUID()
+                post.author = this.props.user.info.firstname
                 post.timestamp = Date.now()
                 this.props.addPost(post).then(() => {
                     this.props.closeModal()
@@ -92,11 +93,11 @@ class PostModal extends Component {
             this.setState({ editModal: true, post: this.props.post })
         }
 
-        if (this.props.categories.items.length == 0 ) this.props.fetchCategories()
+        if (this.props.categories.items.length === 0) this.props.fetchCategories()
     }
 
     render() {
-        const { categories } = this.props
+        const { categories, user } = this.props
         const post = this.state.post
 
         return (
@@ -165,15 +166,13 @@ class PostModal extends Component {
                             </Grid>
                             <Grid item xs={12} md={6}>
                                 <TextField
-                                    autoFocus
                                     margin="dense"
                                     id="author"
-                                    value={post.author}
-                                    onChange={this.handleInputChange('author')}
+                                    value={user.info.firstname}
+                                    disabled
                                     label="Author"
                                     type="text"
                                     fullWidth={true}
-                                    required
                                 />
                             </Grid>
                         </Grid>
@@ -193,9 +192,10 @@ class PostModal extends Component {
     }
 }
 
-const mapStateToProps = ({ categories }) => {
+const mapStateToProps = ({ categories, user }) => {
     return {
-        categories
+        categories,
+        user
     }
 }
 

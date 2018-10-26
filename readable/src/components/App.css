@@ -18,3 +18,17 @@
 .notfound{
     margin-top: 100px;
 }
+
+.error-alert{
+    margin: 5px 0 0 0 !important;
+    color: red !important;
+    text-align: center !important;
+    min-height: 18px;
+}
+
+.body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    justify-content: space-between;
+}

@@ -42,14 +42,15 @@ class Comments extends Component {
     render() {
 
         const { comments } = this.props
-        console.log(comments)
         return (
             <Grid item xs={8}>
                 <Card className="card">
                     <CardContent>
                         <div className="comments-header">
                             <Typography variant="subheading" component="h4" >Comments</Typography>
-                            <Button variant="contained" color="primary" onClick={this.openModal}>New Comment</Button>
+                            {this.props.user && this.props.user.isLogged && (
+                                <Button variant="contained" color="primary" onClick={this.openModal}>New Comment</Button>
+                            )}
                         </div>
                         {comments && comments.length > 0 && (
                             comments.map((comment) => (
@@ -67,12 +68,13 @@ class Comments extends Component {
     }
 }
 
-const mapStateToProps = (({ comments }) => {
+const mapStateToProps = (({ comments, user }) => {
     return {
         comments: Object.keys(comments.items).reduce((acc, curr) => {
             acc.push(comments.items[curr])
             return acc
-        }, [])
+        }, []),
+        user
     }
 })
 
@@ -85,5 +87,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)
-    (Comments)
+)(Comments)

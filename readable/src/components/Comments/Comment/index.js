@@ -37,7 +37,7 @@ class Comment extends Component {
 
     render() {
 
-        const { comment, commentDownVote, commentUpVote } = this.props
+        const { comment, commentDownVote, commentUpVote, user } = this.props
 
         return (
             <div>
@@ -46,10 +46,12 @@ class Comment extends Component {
                     <CardContent>
                         <div className="comment-header">
                             <Typography>{`${comment.author} commented:`}</Typography>
-                            <div>
-                                <Icon onClick={this.openEditModal} className={`icon`} color="primary" >edit</Icon>
-                                <Icon onClick={this.openDeleteModal} className={`icon`} color="secondary" >delete</Icon>
-                            </div>
+                            {user && user.isLogged && user.info.firstname === comment.author && (
+                                <div>
+                                    <Icon onClick={this.openEditModal} className={`icon`} color="primary" >edit</Icon>
+                                    <Icon onClick={this.openDeleteModal} className={`icon`} color="secondary" >delete</Icon>
+                                </div>
+                            )}
                         </div>
                         <br />
                         <div className="comment-body">
@@ -81,9 +83,10 @@ class Comment extends Component {
 
 }
 
-const mapStateToProps = (({ comments }, { id }) => {
+const mapStateToProps = (({ comments, user }, { id }) => {
     return {
-        comment: comments.items[id] || null
+        comment: comments.items[id] || null,
+        user
     }
 })
 

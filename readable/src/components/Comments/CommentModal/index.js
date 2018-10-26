@@ -65,6 +65,7 @@ class CommentModal extends Component {
             comment.id = UUID()
             comment.timestamp = Date.now()
             comment.parentId = this.props.parentId
+            comment.author = this.props.user.info.firstname
             this.props.addComment(comment).then(() => {
                 this.props.closeModal()
             })
@@ -119,12 +120,11 @@ class CommentModal extends Component {
                                     autoFocus
                                     margin="dense"
                                     id="author"
-                                    value={comment.author}
-                                    onChange={this.handleInputChange('author')}
+                                    value={this.props.user.info.firstname}
                                     label="Author"
                                     type="text"
                                     fullWidth={true}
-                                    required
+                                    disabled
                                 />
                             </Grid>
                         </Grid>
@@ -144,6 +144,11 @@ class CommentModal extends Component {
     }
 }
 
+const mapStateToProps = ({ user }) => {
+    return {
+        user
+    }
+}
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -153,6 +158,6 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(CommentModal)

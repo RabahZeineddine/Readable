@@ -45,7 +45,7 @@ class PostCover extends Component {
     }
 
     render() {
-        const { post, postUpVote, postDownVote, showDetails } = this.props
+        const { post, postUpVote, postDownVote, showDetails, user } = this.props
         return (
             post ?
                 <Grid item xs={8}>
@@ -57,21 +57,23 @@ class PostCover extends Component {
                                         {post.title}
                                     </Link>
                                 </Typography>
-                                <div>
-                                    <Icon onClick={this.openEditModal} className={`icon`} color="primary" >edit</Icon>
-                                    <Icon onClick={this.openDeleteModal} className={`icon`} color="secondary" >delete</Icon>
-                                </div>
+                                {user && user.isLogged && user.info.firstname.toLowerCase() === post.author.toLowerCase() && (
+                                    <div>
+                                        <Icon onClick={this.openEditModal} className={`icon`} color="primary" >edit</Icon>
+                                        <Icon onClick={this.openDeleteModal} className={`icon`} color="secondary" >delete</Icon>
+                                    </div>
+                                )}
                             </div>
                             <br />
                             {showDetails ?
                                 <div>
                                     {post.body}
-                                    <br/><br/>
+                                    <br /><br />
                                 </div>
                                 : ''}
                             <div className="comments-count">
                                 <Icon className="comment-icon">comment</Icon>
-                                <Typography className="comments-count-details">{(post.commentCount > 1) ? ` ${post.commentCount} Comments` : (post.commentCount == 1) ? ` 1 Comment` : ` No comments yet`}</Typography>
+                                <Typography className="comments-count-details">{(post.commentCount > 1) ? ` ${post.commentCount} Comments` : (post.commentCount === 1) ? ` 1 Comment` : ` No comments yet`}</Typography>
                             </div>
 
                             <br />
@@ -102,9 +104,10 @@ class PostCover extends Component {
     }
 }
 
-const mapStateToProps = ({ posts }, ownProps) => {
+const mapStateToProps = ({ posts, user }, ownProps) => {
     return {
-        post: posts.items[ownProps.id] || null
+        post: posts.items[ownProps.id] || null,
+        user
     }
 }
 
@@ -117,5 +120,4 @@ const mapDispatchToProps = dispatch => {
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps)
-    (PostCover)
+    mapDispatchToProps)(PostCover)

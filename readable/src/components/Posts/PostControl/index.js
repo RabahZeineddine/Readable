@@ -28,6 +28,9 @@ class PostControl extends Component {
             case "date":
                 this.props.orderPostsByDate()
                 break;
+            default:
+                this.props.orderPostsByVote()
+                break;
         }
     }
 
@@ -60,12 +63,14 @@ class PostControl extends Component {
                                 </Select>
                             </FormControl>
                         </div>
-                        <div>
-                            <Button variant="contained" color="primary" onClick={this.openModal}>
-                                New Post
+                        {this.props.user && this.props.user.isLogged && (
+                            <div>
+                                <Button variant="contained" color="primary" onClick={this.openModal}>
+                                    New Post
                                 </Button>
-                            <PostModal open={this.state.openModal} closeModal={this.closeModal} />
-                        </div>
+                                <PostModal open={this.state.openModal} closeModal={this.closeModal} />
+                            </div>
+                        )}
                     </CardContent>
                 </Card>
             </Card>
@@ -73,9 +78,10 @@ class PostControl extends Component {
     }
 }
 
-const mapStateToProps = ({ posts }) => {
+const mapStateToProps = ({ posts, user }) => {
     return {
-        posts
+        posts,
+        user
     }
 }
 

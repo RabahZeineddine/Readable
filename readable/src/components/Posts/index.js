@@ -16,7 +16,7 @@ class Posts extends Component {
     }
 
     componentDidMount() {
-        if (this.props.category !== undefined && this.props.category != this.state.currentCategory) {
+        if (this.props.category !== undefined && this.props.category !== this.state.currentCategory) {
             this.setState({ currentCategory: this.props.category })
             this.props.fetchPostsByCategory(this.props.category)
         } else if (this.props.category === undefined) {
@@ -26,10 +26,10 @@ class Posts extends Component {
     }
 
     componentDidUpdate() {
-        if (this.props.category !== undefined && this.props.category != this.state.currentCategory) {
+        if (this.props.category !== undefined && this.props.category !== this.state.currentCategory) {
             this.setState({ currentCategory: this.props.category })
             this.props.fetchPostsByCategory(this.props.category)
-        } else if (this.props.category === undefined && this.state.currentCategory != '') {
+        } else if (this.props.category === undefined && this.state.currentCategory !== '') {
             this.setState({ currentCategory: '' })
             this.props.fetchPosts()
         }
