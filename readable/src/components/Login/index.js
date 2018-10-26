@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import serializeForm from 'form-serialize'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { login } from '../../actions/userActions'
 import MD5 from 'md5'
@@ -8,10 +7,6 @@ import { getServerMessage, setSession } from '../../utils/util'
 import { Grid, Card, CardContent, Typography, TextField, Button } from '@material-ui/core';
 
 class Login extends Component {
-
-    static propTypes = {
-        onLogin: PropTypes.func.isRequired
-    }
 
     state = {
         inputErrors: {
@@ -52,7 +47,7 @@ class Login extends Component {
             this.props.login(values).then(() => {
                 if (this.props.user.msg === "USER_LOGGED_SUCCESSFULLY") {
                     setSession('USER', this.props.user.info)
-                    this.props.onLogin()
+                    this.props.history.push('/')
                 }
             })
 

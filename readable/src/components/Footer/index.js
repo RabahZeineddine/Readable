@@ -5,9 +5,9 @@ class Footer extends Component {
 
     render() {
         return (
-            <Card className="card">
+            <Card className="card" className="footer">
                 <CardContent>
-                    Rabah Zeineddine
+                    Rabah Zeineddine, Readable: React And Redux section project
                 </CardContent>
             </Card>
         )

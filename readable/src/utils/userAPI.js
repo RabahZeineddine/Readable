@@ -1,12 +1,11 @@
-// const api = "https://readablebackend.mybluemix.net"
-const api = "http://localhost:4000"
+const API = "http://localhost:4000"
 
 const headers = {
     'Accept': 'application/json',
 }
 
 export const login = (user) =>
-    fetch(`${api}/login`, {
+    fetch(`${API}/login`, {
         method: 'POST',
         headers: {
             ...headers,
@@ -16,7 +15,7 @@ export const login = (user) =>
     }).then(res => res.json())
 
 export const signup = (user) =>
-    fetch(`${api}/signup`, {
+    fetch(`${API}/signup`, {
         method: 'POST',
         headers: {
             ...headers,

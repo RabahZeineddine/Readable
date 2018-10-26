@@ -1,7 +1,7 @@
-import { 
+import {
     FETCH_CATEGORIES_REQUEST,
-    FETCH_CATEGORIES_FAILURE, 
-    FETCH_CATEGORIES_SUCCESS 
+    FETCH_CATEGORIES_FAILURE,
+    FETCH_CATEGORIES_SUCCESS
 } from '../actions/categoriesActions'
 
 

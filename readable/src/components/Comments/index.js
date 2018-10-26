@@ -47,7 +47,7 @@ class Comments extends Component {
                 <Card className="card">
                     <CardContent>
                         <div className="comments-header">
-                            <Typography variant="subheading" component="h4" >Comments</Typography>
+                            <Typography variant="subheading" component="h4" >{comments && comments.length > 0 ?`Comments`:`No comments yet`}</Typography>
                             {this.props.user && this.props.user.isLogged && (
                                 <Button variant="contained" color="primary" onClick={this.openModal}>New Comment</Button>
                             )}

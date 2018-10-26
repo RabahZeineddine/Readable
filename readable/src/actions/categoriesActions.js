@@ -4,7 +4,6 @@ export const FETCH_CATEGORIES_REQUEST = 'FETCH_CATEGORIES_REQUEST'
 export const FETCH_CATEGORIES_FAILURE = 'FETCH_CATEGORIES_FAILURE'
 export const FETCH_CATEGORIES_SUCCESS = 'FETCH_CATEGORIES_SUCCESS'
 
-
 const fetchCategoriesRequest = () => {
     return {
         type: FETCH_CATEGORIES_REQUEST
@@ -32,5 +31,3 @@ export const fetchCategories = () => dispatch => {
         .then(categories => dispatch(fetchCategoriesSuccess(categories)))
         .catch(err => dispatch(fetchCategoriesFailure(err)))
 }
-
-
