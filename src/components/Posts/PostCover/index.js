@@ -64,20 +64,16 @@ class PostCover extends Component {
                                     </div>
                                 )}
                             </div>
-                            <br />
                             {showDetails ?
-                                <div>
+                                <div className="spacing-top">
                                     {post.body}
-                                    <br /><br />
                                 </div>
                                 : ''}
-                            <div className="comments-count">
+                            <div className="comments-count spacing-top">
                                 <Icon className="comment-icon">comment</Icon>
                                 <Typography className="comments-count-details">{(post.commentCount > 1) ? ` ${post.commentCount} Comments` : (post.commentCount === 1) ? ` 1 Comment` : ` No comments yet`}</Typography>
                             </div>
-
-                            <br />
-                            <div className="post-voting">
+                            <div className="post-voting spacing-top">
                                 <Icon className="thumbs-icon" onClick={() => postUpVote(post.id)}>thumb_up</Icon>
                                 <Typography className="voting-number">{post.voteScore}</Typography>
                                 <Icon className="thumbs-icon" onClick={() => postDownVote(post.id)} >thumb_down</Icon>

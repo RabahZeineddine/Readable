@@ -53,8 +53,7 @@ class Comment extends Component {
                                 </div>
                             )}
                         </div>
-                        <br />
-                        <div className="comment-body">
+                        <div className="comment-body spacing-top">
                             <div className="comment-vote">
                                 <Icon className="thumbs-icon" onClick={() => commentUpVote(comment.id)}>thumb_up</Icon>
                                 <Typography className="voting-number">{comment.voteScore}</Typography>

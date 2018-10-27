@@ -16,6 +16,7 @@ import { Link } from 'react-router-dom'
 import './categories.css'
 
 
+
 class Categories extends Component {
 
     render() {
@@ -23,8 +24,7 @@ class Categories extends Component {
         const selectedCategory = this.props.category
         return (
             <Grid item xs={12}>
-                <br />
-                <Card>
+                <Card className="spacing-top">
                     <CardContent>
                         <Typography variant="subheading" color="textSecondary">
                             Categories:

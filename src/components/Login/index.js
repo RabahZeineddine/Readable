@@ -79,14 +79,10 @@ class Login extends Component {
         return (
             <Grid container spacing={8} justify="center">
                 <Grid item xs={8}>
-                    <br />
-                    <br />
-                    <br />
-                    <Card className="card">
+                    <Card className="card login-top">
                         <CardContent>
                             <Typography variant="title"  >Login</Typography>
-                            <br />
-                            <form onSubmit={this.handleSubmit}>
+                            <form onSubmit={this.handleSubmit} className="spacing-top">
                                 <Typography className="error-alert">{this.props.user.error ? getServerMessage(this.props.user.error) : ''}</Typography>
                                 <Grid container spacing={8}>
                                     <Grid item xs={12}>
@@ -119,8 +115,7 @@ class Login extends Component {
                                     </Grid>
 
                                 </Grid>
-                                <br />
-                                <Grid container spacing={8} justify="center" >
+                                <Grid container spacing={8} justify="center" className="spacing-top">
                                     <Button color="primary" variant="outlined" type="submit" >{this.props.user.isLoggingIn ? 'Loading...' : 'Login'}</Button>
                                 </Grid>
                             </form>

@@ -41,7 +41,6 @@ class Posts extends Component {
         return (
             <Grid item container xs={12} justify="center" >
                 <Grid item xs={12}>
-                    <br />
                     <PostControl />
                 </Grid>
 

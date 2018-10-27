@@ -127,14 +127,10 @@ class Signup extends Component {
         return (
             <Grid container spacing={8} justify="center">
                 <Grid item xs={8}>
-                    <br />
-                    <br />
-                    <br />
-                    <Card className="card">
+                    <Card className="card signup-top">
                         <CardContent>
                             <Typography variant="title"  >Signup</Typography>
-                            <br />
-                            <form onSubmit={this.handleSubmit}>
+                            <form onSubmit={this.handleSubmit} className="spacing-top">
                                 <Typography className="error-alert">{this.props.user.error ? getServerMessage(this.props.user.error) : ''}</Typography>
                                 <Grid container spacing={8}>
 
@@ -212,8 +208,7 @@ class Signup extends Component {
                                         />
                                     </Grid>
                                 </Grid>
-                                <br />
-                                <Grid container spacing={8} justify="center" >
+                                <Grid container spacing={8} justify="center" className="spacing-top" >
                                     <Button color="primary" variant="outlined" type="submit" >{this.props.user.isSigningUp ? 'Loading...' : 'Signup'}</Button>
                                 </Grid>
                             </form>

@@ -44,7 +44,7 @@ class PostControl extends Component {
 
     render() {
         return (
-            <Card>
+            <Card className="spacing-top">
                 <Card>
                     <CardContent className="posts-control-card">
                         <div className="order-post-control">
