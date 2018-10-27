@@ -21,9 +21,13 @@ import {
     FETCH_POST_SUCCESS
 } from '../actions/postsActions'
 
+import {
+    DELETE_COMMENT_SUCCESS,
+    ADD_COMMENT_SUCCESS
+} from '../actions/commentsActions'
+
 const initialPostsState = {
     isFetching: false,
-    lastUpdated: 0,
     items: {}
 }
 
@@ -44,7 +48,6 @@ function posts(state = initialPostsState, action) {
             return {
                 ...state,
                 isFetching: false,
-                lastUpdated: new Date().getTime(),
                 orderBy: "voteScore",
                 items: action.response.sort((a, b) => a.voteScore < b.voteScore).reduce((acc, curr) => {
                     acc[curr['id']] = curr
@@ -65,7 +68,6 @@ function posts(state = initialPostsState, action) {
         case VOTE_POST_SUCCESS:
             return {
                 ...state,
-                lastUpdated: new Date().getTime(),
                 items: {
                     ...state['items'],
                     [action.response.id]: {
@@ -218,6 +220,32 @@ function posts(state = initialPostsState, action) {
                     [action.post.id]: action.post
                 }
             }
+
+        case DELETE_COMMENT_SUCCESS: {
+            return {
+                ...state,
+                items: Object.keys(state['items']).reduce((acc, curr) => {
+                    acc[curr] = state['items'][curr]
+                    if (curr === action.deletedComment.parentId) {
+                        acc[curr]['commentCount'] -= 1
+                    }
+                    return acc
+                }, {})
+            }
+        }
+
+        case ADD_COMMENT_SUCCESS: {
+            return {
+                ...state,
+                items: Object.keys(state['items']).reduce((acc, curr) => {
+                    acc[curr] = state['items'][curr]
+                    if (curr === action.addedComment.parentId) {
+                        acc[curr]['commentCount'] += 1
+                    }
+                    return acc
+                }, {})
+            }
+        }
 
         default:
             return state

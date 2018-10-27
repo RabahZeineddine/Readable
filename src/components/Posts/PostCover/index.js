@@ -107,7 +107,8 @@ class PostCover extends Component {
 const mapStateToProps = ({ posts, user }, ownProps) => {
     return {
         post: posts.items[ownProps.id] || null,
-        user
+        user,
+        posts
     }
 }
 

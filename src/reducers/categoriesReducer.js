@@ -7,7 +7,6 @@ import {
 
 const initialCategoriesState = {
     isFetching: false,
-    lastUpdated: 0,
     items: []
 }
 
@@ -29,7 +28,6 @@ function categories(state = initialCategoriesState, action) {
             return {
                 ...state,
                 isFetching: false,
-                lastUpdated: new Date().getTime(),
                 items: action.response
             }
         default:

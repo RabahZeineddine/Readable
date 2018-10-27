@@ -47,7 +47,7 @@ class Comments extends Component {
                 <Card className="card">
                     <CardContent>
                         <div className="comments-header">
-                            <Typography variant="subheading" component="h4" >{comments && comments.length > 0 ?`Comments`:`No comments yet`}</Typography>
+                            <Typography variant="subheading" component="h4" >{comments && comments.length > 0 ? `Comments` : `No comments yet`}</Typography>
                             {this.props.user && this.props.user.isLogged && (
                                 <Button variant="contained" color="primary" onClick={this.openModal}>New Comment</Button>
                             )}
@@ -68,7 +68,7 @@ class Comments extends Component {
     }
 }
 
-const mapStateToProps = (({ comments, user }) => {
+const mapStateToProps = ({ comments, user }) => {
     return {
         comments: Object.keys(comments.items).reduce((acc, curr) => {
             acc.push(comments.items[curr])
@@ -76,7 +76,7 @@ const mapStateToProps = (({ comments, user }) => {
         }, []),
         user
     }
-})
+}
 
 const mapDispatchToProps = dispatch => {
     return {

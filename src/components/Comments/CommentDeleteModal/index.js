@@ -21,9 +21,7 @@ class CommentDeleteModal extends Component {
 
     deleteComment = () => {
         const { comment } = this.props
-        this.props.deleteComment(comment.id).then(() => {
-            this.props.closeModal()
-        })
+        this.props.deleteComment(comment.id)
     }
 
     render() {

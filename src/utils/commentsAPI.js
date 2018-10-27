@@ -9,7 +9,7 @@ export const deleteComment = (commentId) => {
     return fetch(`${API}/comments/${commentId}`, {
         headers,
         method: 'DELETE'
-    })
+    }).then(res => res.json())
 }
 
 

@@ -1,18 +1,14 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Card, CardContent } from '@material-ui/core';
 
-class Footer extends Component {
-
-    render() {
-        return (
-            <Card className="card footer">
-                <CardContent>
-                    Rabah Zeineddine, Readable: React And Redux section project
+function Footer() {
+    return (
+        <Card className="card footer">
+            <CardContent>
+                Rabah Zeineddine, Readable: React And Redux section project
                 </CardContent>
-            </Card>
-        )
-    }
-
+        </Card>
+    )
 }
 
 export default Footer

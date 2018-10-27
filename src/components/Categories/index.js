@@ -18,10 +18,6 @@ import './categories.css'
 
 class Categories extends Component {
 
-    componentDidMount() {
-        // this.props.fetchCategories()
-    }
-
     render() {
         const { categories } = this.props
         const selectedCategory = this.props.category

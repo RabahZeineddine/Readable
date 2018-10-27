@@ -19,7 +19,6 @@ import {
 
 const initialCommentsState = {
     isFetching: false,
-    lastUpdate: 0,
     items: {}
 }
 
@@ -40,7 +39,6 @@ function comments(state = initialCommentsState, action) {
             return {
                 ...state,
                 isFetching: false,
-                lastUpdate: new Date().getTime(),
                 orderBy: 'voteScore',
                 items: action.comments.sort((a, b) => a.voteScore < b.voteScore).reduce((acc, curr) => {
                     if (!curr.parentDeleted)
@@ -60,7 +58,7 @@ function comments(state = initialCommentsState, action) {
                 isDeleting: false,
                 deletingError: false,
                 items: Object.keys(state['items']).reduce((acc, curr) => {
-                    if (curr !== action.commentId) acc[curr] = state['items'][curr]
+                    if (curr !== action.deletedComment.id) acc[curr] = state['items'][curr]
                     return acc
                 }, {})
             }
@@ -79,12 +77,11 @@ function comments(state = initialCommentsState, action) {
         case ADD_COMMENT_SUCCESS:
             return {
                 ...state,
-                lastUpdate: new Date().getTime(),
                 addingComment: false,
                 addingCommentError: false,
                 items: {
                     ...state['items'],
-                    [action.comment.id]: action.comment
+                    [action.addedComment.id]: action.addedComment
                 }
             }
         case ADD_COMMENT_FAILURE:
@@ -141,7 +138,6 @@ function comments(state = initialCommentsState, action) {
         case VOTE_COMMENT_SUCCESS:
             return {
                 ...state,
-                lastUpdate: new Date().getTime(),
                 items: {
                     ...state['items'],
                     [action.comment.id]: {

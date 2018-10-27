@@ -62,10 +62,10 @@ const deleteCommentFailure = (error) => {
     }
 }
 
-const deleteCommentSuccess = (commentId) => {
+const deleteCommentSuccess = (deletedComment) => {
     return {
         type: DELETE_COMMENT_SUCCESS,
-        commentId
+        deletedComment
     }
 }
 
@@ -73,7 +73,7 @@ export const deleteComment = (commentId) => dispatch => {
     dispatch(deleteCommentRequest())
     return CommentsAPI
         .deleteComment(commentId)
-        .then(() => dispatch(deleteCommentSuccess(commentId)))
+        .then((deletedComment) => dispatch(deleteCommentSuccess(deletedComment)))
         .catch(err => dispatch(deleteCommentFailure(err)))
 }
 
@@ -91,10 +91,10 @@ const addCommentFailure = (error) => {
     }
 }
 
-const addCommentSuccess = (comment) => {
+const addCommentSuccess = (addedComment) => {
     return {
         type: ADD_COMMENT_SUCCESS,
-        comment
+        addedComment
     }
 }
 

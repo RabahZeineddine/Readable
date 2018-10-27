@@ -15,7 +15,6 @@ const initialUserState = {
     isLoggingIn: false,
     isSigningUp: false,
     isLogged: sessionCheck('USER'),
-    lastUpdated: 0,
     info: (sessionCheck('USER')) ? getSession('USER') : {}
 
 }
@@ -76,7 +75,6 @@ function user(state = initialUserState, action) {
                 isLoggingIn: false,
                 isSigningUp: false,
                 isLogged: false,
-                lastUpdated: 0,
                 info: {}
             }
         }
